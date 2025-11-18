@@ -205,7 +205,7 @@ log_step("One-hot encoding", t)
 
 
 # ============================================================
-# 10) BINARY ENCODING
+# 10) BINARY ENCODING — VERSIONE CORRETTA
 # ============================================================
 t = time.time()
 print("🔵 Binary encoding...")
@@ -217,8 +217,16 @@ binary_cols = [
     "Traffic_Calming", "Traffic_Signal"
 ]
 
+def to_bin(x):
+    if pd.isna(x):
+        return 0
+    x = str(x).strip().lower()
+    if x in ["true", "yes", "1", "day"]:
+        return 1
+    return 0
+
 for c in binary_cols:
-    df[c + "_bin"] = df[c].replace({"True":1, "Yes":1, "Day":1}).fillna(0).astype(int)
+    df[c + "_bin"] = df[c].apply(to_bin).astype(int)
     df.drop(columns=[c], inplace=True)
 
 log_step("Binary encoding", t)
