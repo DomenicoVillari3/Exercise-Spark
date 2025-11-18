@@ -1,0 +1,13 @@
+Caricamento CSV: 48.26 sec
+Riempimento NA numerici: 0.81 sec
+Drop colonne inutili: 1.53 sec
+Simplify Wind_Direction: 4.30 sec
+Simplify Weather_Condition: 17.91 sec
+Feature engineering date: 3.16 sec
+Riempimento NA categoriche: 2.43 sec
+Frequency encoding: 14.25 sec
+One-hot encoding: 3.21 sec
+Binary encoding: 69.40 sec
+Cleanup finale: 1.92 sec
+Drop feature basse correlazioni: 26.12 sec
+Train/Test split: 3.42 sec
