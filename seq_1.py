@@ -177,7 +177,7 @@ df["Sunrise_Sunset_calc"] = np.where(df["Hour"] <= 16, "Day", "Night")
 log_step("Feature engineering date", t)
 
 
-df.drop(columns=["Start_Time_parsed","Start_Time", "Start_Time_parsed_str","Weather_Timestamp"], inplace=True)
+#df.drop(columns=["Start_Time_parsed","Start_Time", "Start_Time_parsed_str","Weather_Timestamp"], inplace=True)
     
 
 # ============================================================
