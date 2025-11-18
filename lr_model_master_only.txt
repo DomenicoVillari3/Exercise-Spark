@@ -1,0 +1,3 @@
+Training time: 151.16 seconds
+F1 = 0.752436974656477
+Accuracy = 0.8012767439998442
