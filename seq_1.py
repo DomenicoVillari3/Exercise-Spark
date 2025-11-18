@@ -303,7 +303,7 @@ log_step("Drop features basse correlazioni", t)
 # ============================================================
 # 🔥 CRITICAL SAFETY CHECK: DROP NA VERSION 🔥
 # ============================================================
-print("🔵 Esecuzione controllo di sicurezza finale (NaN/Inf)...")
+'''print("🔵 Esecuzione controllo di sicurezza finale (NaN/Inf)...")
 
 # 1. Rimuovi colonne non numeriche residue
 non_numeric = df.select_dtypes(exclude=[np.number]).columns.tolist()
@@ -320,7 +320,7 @@ df.dropna(inplace=True)
 rows_after = len(df)
 
 print(f"   → Righe eliminate con NaN: {rows_before - rows_after}")
-print(f"   → Righe residue: {rows_after}")
+print(f"   → Righe residue: {rows_after}")'''
 
 # ============================================================
 # 12) TRAIN/TEST E SCALING

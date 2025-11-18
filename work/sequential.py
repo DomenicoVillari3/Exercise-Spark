@@ -7,9 +7,32 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import Pipeline
 from sklearn.metrics import f1_score, accuracy_score
+import kagglehub
+import os
 
 # Lettura CSV con header implicito
-accidents = pd.read_csv("datasets/US_Accidents_March23.csv", header=0)
+print("📦 Downloading dataset from KaggleHub...")
+try:
+    dataset_path = kagglehub.dataset_download("sobhanmoosavi/us-accidents")
+    print("📁 Path to dataset files:", dataset_path)
+
+    csv_path = None
+    for f in os.listdir(dataset_path):
+        if f.endswith(".csv"):
+            csv_path = os.path.join(dataset_path, f)
+            break
+    
+    if csv_path is None:
+        raise FileNotFoundError("Nessun CSV trovato.")
+except:
+    csv_path = "US_Accidents_March23.csv"
+    print("⚠️ KaggleHub non riuscito, cerco file locale:", csv_path)
+
+print("📄 CSV target:", csv_path)
+
+t = time.time()
+print("🔵 Caricamento CSV...")
+accidents = pd.read_csv(csv_path)
 
 # Sostituzione NA nelle colonne numeriche con media
 num_cols = ["Temperature(F)", "Wind_Chill(F)", "Humidity(%)", "Pressure(in)", "Visibility(mi)", "Wind_Speed(mph)", "Precipitation(in)"]
