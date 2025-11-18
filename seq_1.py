@@ -12,6 +12,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score, accuracy_score
+import kagglehub
+import os
 
 # ============================================================
 # FILE DI OUTPUT
@@ -36,11 +38,28 @@ T0 = time.time()
 # ============================================================
 # 1) LETTURA DATASET
 # ============================================================
+# Download latest version of the dataset
+print("📦 Downloading dataset from KaggleHub...")
+dataset_path = kagglehub.dataset_download("sobhanmoosavi/us-accidents")
+print("📁 Path to dataset files:", dataset_path)
+
+# Trova automaticamente il file CSV corretto
+csv_path = None
+for f in os.listdir(dataset_path):
+    if f.endswith(".csv"):
+        csv_path = os.path.join(dataset_path, f)
+        break
+
+if csv_path is None:
+    raise FileNotFoundError("❌ Nessun CSV trovato nella cartella scaricata da KaggleHub!")
+
+print("📄 CSV trovato:", csv_path)
+
+# Caricamento CSV con log del tempo
 t = time.time()
 print("🔵 Caricamento CSV...")
-df = pd.read_csv("datasets/US_Accidents_March23.csv")
+df = pd.read_csv(csv_path)
 log_step("Caricamento CSV", t)
-
 
 # ============================================================
 # 2) FILL NA — NUMERICI
