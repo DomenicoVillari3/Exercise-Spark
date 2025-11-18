@@ -246,6 +246,20 @@ df.drop(columns=low_corr, inplace=True)
 preproc_log.write(f"Drop feature per bassa correlazione: {len(low_corr)} colonne\n")
 log_step("Drop feature basse correlazioni", t)
 
+# ============================================================
+# DROP DATE COLUMNS (Pandas non può gestirle nei modelli)
+# ============================================================
+t = time.time()
+print("🔵 Rimozione colonne datetime residue...")
+
+date_cols = df.select_dtypes(include=["datetime64[ns]"]).columns.tolist()
+if len(date_cols) > 0:
+    print("   → Colonne datetime trovate:", date_cols)
+    df.drop(columns=date_cols, inplace=True)
+else:
+    print("   → Nessuna colonna datetime trovata.")
+
+log_step("Drop colonne datetime", t)
 
 # ============================================================
 # 12) TRAIN/TEST
