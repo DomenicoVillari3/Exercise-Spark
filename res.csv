@@ -1,0 +1,5 @@
+type,model,time(sec),f1_score,accuracy
+sequential,RandomForest,499.16,0.3448,0.8171
+sequential,LogisticRegression,71.92, 0.2407,0.7721
+spark,RandomForest,211.56,0.8072,0.834787565031444
+spark,LogisticRegression,141.05,0.7524,0.80127
